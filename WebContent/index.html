@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>AngularJs Pagination</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="myscript.js"></script>
+<style>
+	table, th, td {
+		border:solid 1px #DDD;
+		padding:3px;
+		font:14px Verdana;
+		text-align:center;
+	}
+	th {font-weight:bold;}
+</style>
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="myController">
+		<table>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Gender</th>
+			</tr>	
+			<tr ng-repeat="d in data | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
+				<td>{{d.Id}}</td>
+				<td>{{d.Name}}</td>
+				<td>{{d.Gender}}</td>
+			</tr>		
+			<tr>
+				<td colspan="3">
+					<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"><<</button>
+			   		{{currentPage+1}}/{{numberOfPages()}}
+			   		<button ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">>></button>
+				</td>
+			</tr>
+		</table>
+	</div>	  
+</body>
+</html>
